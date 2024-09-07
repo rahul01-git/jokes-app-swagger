@@ -1,6 +1,6 @@
 const express = require("express");
-const { client } = require("./db-setup");
-const { getAllJokes, getRandomJoke, createJoke } = require("./query-helper");
+const { client } = require("../db-setup");
+const { getAllJokes, getRandomJoke, createJoke } = require("../query-helper");
 
 const router = express.Router();
 
