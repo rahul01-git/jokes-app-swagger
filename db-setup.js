@@ -1,5 +1,5 @@
 const { Client } = require("pg");
-const { createTable, getAllJokes } = require("./query-helper");
+const { createTable, getAllJokes, addInitialJokes } = require("./query-helper");
 require('dotenv/config')
 
 const client = new Client({
@@ -24,7 +24,7 @@ const authenticateDB = async () => {
         "Jokes table already exists and has data. Skipping insertion."
       );
     } else {
-      await client.query(initialJokes);
+      await client.query(addInitialJokes);
       console.log("Initial jokes inserted into the database.");
     }
   } catch (error) {
