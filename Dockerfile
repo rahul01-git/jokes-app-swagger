@@ -1,15 +1,17 @@
-FROM node:20-alpine
+FROM node:20
 
 RUN useradd -ms /bin/bash nodeuser
 
-WORKDIR /user/src/app
+WORKDIR /usr/src/app
 
-COPY . .
+COPY package*.json ./
 
 RUN npm install
 
-EXPOSE 8000
+COPY . .
+
+EXPOSE 3000
 
 USER nodeuser
 
-CMD [ "node", "index.js" ]
+CMD ["node", "index.js"]
