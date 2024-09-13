@@ -35,7 +35,11 @@ router.get("/", async (req, res) => {
   const cacheKey = "all_jokes";
   try {
     const cachedJokes = await redisClient.get(cacheKey)
-    if (cachedJokes) return res.status(200).json(JSON.parse(cachedJokes));
+    if (cachedJokes) {
+      console.log('fetched jokes from redis');
+      return res.status(200).json(JSON.parse(cachedJokes));
+    }
+    console.log('fetched jokes from db');
 
     const { rows } = await client.query(getAllJokes);
     const response = { message: "Jokes fetched successfully!", data: rows };
